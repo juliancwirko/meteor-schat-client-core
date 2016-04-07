@@ -1,6 +1,6 @@
 ## sChat client app for Meteor - core package
 
-For more information about sChat see the documentation: [https://www.simplechat.support/docs](www.simplechat.support/docs)
+For more information about sChat see the documentation: [https://www.simplechat.support/docs](https://www.simplechat.support/docs)
 
 ### Installing sChat box on Meteor App
 
