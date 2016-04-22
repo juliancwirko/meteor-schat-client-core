@@ -31,8 +31,11 @@ sChat = {
         this.userSessionId = Random.id();
         this.clientAppId = clientAppId;
         this.ddp = DDP.connect(endpoint);
-        this.collection = new Mongo.Collection('chat', {connection: this.ddp});
+        this.chatCollection = new Mongo.Collection('chat', {connection: this.ddp});
         this.ddp.subscribe('Chat.messagesList', this.clientAppId, this.userSessionId);
-        this.messages = this.collection.find({userSessionId: this.userSessionId}, {sort: {date: 1}});
+        this.messages = this.chatCollection.find({userSessionId: this.userSessionId}, {sort: {date: 1}});
+        this.adminCollection = new Mongo.Collection('users', {connection: this.ddp});
+        this.ddp.subscribe('Meteor.users.adminStatus', this.clientAppId);
+        this.adminStatusCurr = this.adminCollection.find();
     }
 };

@@ -1,6 +1,6 @@
 Package.describe({
     name: 'schat:client-core',
-    version: '1.0.0',
+    version: '1.1.0',
     summary: 'sChat client app for Meteor - core package',
     git: 'https://github.com/juliancwirko/meteor-schat-client-core.git',
     documentation: 'README.md'
