@@ -28,9 +28,12 @@ sChat = {
             connectionType = 'http';
         }
         const endpoint = connectionType + '://' + this.settings.hostName;
-        this.userSessionId = Random.id();
+        this.userSessionId = sessionStorage.getItem('sChatUserSessionId') || Random.id();
         this.clientAppId = clientAppId;
         this.ddp = DDP.connect(endpoint);
+        if (sessionStorage && !sessionStorage.getItem('sChatUserSessionId')) {
+            sessionStorage.setItem('sChatUserSessionId', this.userSessionId);
+        }
         this.chatCollection = new Mongo.Collection('chat', {connection: this.ddp});
         this.ddp.subscribe('Chat.messagesList', this.clientAppId, this.userSessionId);
         this.messages = this.chatCollection.find({userSessionId: this.userSessionId}, {sort: {date: 1}});
